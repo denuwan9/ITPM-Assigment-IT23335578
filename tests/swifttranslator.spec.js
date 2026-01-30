@@ -85,9 +85,9 @@ test('Pos_Fun_0002: Compound sentence with conjunction', async ({ page }) => {
   expect(actualOutput).toBe(expectedOutput);
 });
 
-test('Pos_Fun_0003: Negation pattern in statement', async ({ page }) => {
-  const input = 'mata eeka epaa';
-  const expectedOutput = 'මට ඒක එපා';
+test('Pos_Fun_0003: Time format in sentence', async ({ page }) => {
+  const input = 'meeting eka 3.30 PM ta';
+  const expectedOutput = 'meeting එක 3.30 PM ට';
 
   const actualOutput = await translateAndGetOutput(page, input);
 
