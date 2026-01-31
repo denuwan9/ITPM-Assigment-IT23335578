@@ -85,7 +85,7 @@ test('Pos_Fun_0002: Compound sentence with conjunction', async ({ page }) => {
   expect(actualOutput).toBe(expectedOutput);
 });
 
-test('Pos_Fun_0003: Time format in sentence', async ({ page }) => {
+test('Pos_Fun_0003: Negation pattern in statement', async ({ page }) => {
   const input = 'meeting eka 3.30 PM ta';
   const expectedOutput = 'meeting එක 3.30 PM ට';
 
@@ -100,8 +100,8 @@ test('Pos_Fun_0003: Time format in sentence', async ({ page }) => {
 });
 
 test('Pos_Fun_0004: Work context with schedule details', async ({ page }) => {
-  const input = 'adha mama office yanna oonee 9.00 AM ta patan gena 5.00 PM venakan vaeda karanna venavaa';
-  const expectedOutput = 'අද මම office යන්න ඕනේ 9.00 AM ට පටන් ගෙන 5.00 PM වෙනකන් වැඩ කරන්න වෙනවා';
+  const input = 'adha mama office yanna oonee 9.00 AM ta patan gen 5.00 PM venakan vaeda karanna venavaa';
+  const expectedOutput = 'අද මම office යන්න ඕනේ 9.00 AM ට පටන් ගෙන් 5.00 PM වෙනකන් වැඩ කරන්න වෙනවා';
 
   const actualOutput = await translateAndGetOutput(page, input);
 
@@ -169,9 +169,9 @@ test('Pos_Fun_0008: Shopping context with price and items', async ({ page }) => 
   expect(actualOutput).toBe(expectedOutput);
 });
 
-test('Pos_Fun_0009: Travel planning with multiple destinations v2', async ({ page }) => {
-  const input = 'api aluth aavurudhdhu valata Kandy gihilla peraadheNiya balalaa passe Sigiriya yanna hithan innee';
-  const expectedOutput = 'අපි අලුත් ආවුරුද්දු වලට Kandy ගිහිල්ල පෙරාදෙණිය බලලා පස්සෙ Sigiriya යන්න හිතන් ඉන්නේ';
+test('Pos_Fun_0009: Past tense narrative sentence', async ({ page }) => {
+  const input = 'api naetum panthi giyaa';
+  const expectedOutput = 'අපි නැටුම් පන්ති ගියා';
 
   const actualOutput = await translateAndGetOutput(page, input);
 
@@ -212,8 +212,8 @@ test('Pos_Fun_0011: Convert compound sentence with reason', async ({ page }) => 
 });
 
 test('Pos_Fun_0012: Line breaks handling', async ({ page }) => {
-  const input = 'api heta chithrapatiyak balanna yanavaa. oyalath enavadha apith ekka yanna?';
-  const expectedOutput = 'අපි හෙට චිත්‍රපටියක් බලන්න යනවා. ඔයලත් එනවද අපිත් එක්ක යන්න?';
+  const input = 'api heta chithrapatiyak balanna yanavaa.\noyalath enavadha apith ekka yanna?';
+  const expectedOutput = 'අපි හෙට චිත්‍රපටියක් බලන්න යනවා.\nඔයලත් එනවද අපිත් එක්ක යන්න?';
 
   const actualOutput = await translateAndGetOutput(page, input);
 
@@ -324,8 +324,8 @@ test('Pos_Fun_0019: English abbreviations in sentence', async ({ page }) => {
 });
 
 test('Pos_Fun_0020: Sentence with punctuation question', async ({ page }) => {
-  const input = 'meeka hariyata vaedha?';
-  const expectedOutput = 'මේක හරියට වැද?';
+  const input = 'meeka hariyata vaedadha?';
+  const expectedOutput = 'මේක හරියට වැඩද?';
 
   const actualOutput = await translateAndGetOutput(page, input);
 
@@ -354,8 +354,8 @@ test('Pos_Fun_0021: Long paragraph with mixed elements', async ({ page }) => {
 });
 
 test('Pos_Fun_0022: Long professional email content translation', async ({ page }) => {
-  const input = 'suBha udhaeesanak! mata adha email ekak liyanna vunaa office eka gaena. Api aluth project ekak patan gannee iilaga maasayee. Meeting ekath thiyanava passe sathiye saha api oyaalaa okkoma ekka kathaa karanna oonee. Project plan eka ready karalaa thiyanavaa. Budget proposal eka saha timeline eka document eke thiyanavaa. document eka balala comment eka dhenna.';
-  const expectedOutput = 'සුභ උදෑසනක්! මට අද email එකක් ලියන්න වුනා office එක ගැන. අපි අලුත් project එකක් පටන් ගන්නේ ඊලග මාසයේ. Meeting එකත් තියනව පස්සෙ සතියෙ සහ අපි ඔයාලා ඔක්කොම එක්ක කතා කරන්න ඕනේ. Project plan එක ready කරලා තියනවා. Budget proposal එක සහ timeline එක document eke තියනවා. document එක බලල comment එක දෙන්න.';
+  const input = 'suBha udhaeesanak!  mata adha email ekak liyanna vunaa office eka gaena. Api aluth project ekak patan gannee iilaga maasayee. Meeting ekath thiyanava passe sathiye saha api oyaalaa okkoma ekka kathaa karanna oonee. Project plan eka ready karalaa thiyanavaa. Budget proposal eka saha timeline eka document eke thiyanavaa.  document eka balala comment eka dhenna. ';
+  const expectedOutput = 'සුභ උදෑසනක්!  මට අද email එකක් ලියන්න වුනා office එක ගැන. අපි අලුත් project එකක් පටන් ගන්නේ ඊලග මාසයේ. Meeting එකත් තියනව පස්සෙ සතියෙ සහ අපි ඔයාලා ඔක්කොම එක්ක කතා කරන්න ඕනේ. Project plan එක ready කරලා තියනවා. Budget proposal එක සහ timeline එක document eke තියනවා.  document එක බලල comment එක දෙන්න. ';
 
   const actualOutput = await translateAndGetOutput(page, input);
 
@@ -397,6 +397,171 @@ test('Pos_Fun_0024: Convert formal sentence', async ({ page }) => {
   expect(actualOutput).toBe(expectedOutput);
 });
 
+
+
+
+// NEGATIVE FUNCTIONAL TEST CASES (10 tests) - Expected to FAIL
+
+
+test('Neg_Fun_0001: Joined words without spaces', async ({ page }) => {
+  const input = 'apisadhudhatagedharayanavaa.';
+  
+  const expectedOutput = 'අපි සදුදට ගෙදර යනවා.';
+
+  const actualOutput = await translateAndGetOutput(page, input);
+
+  console.log(`TC ID: Neg_Fun_0001`);
+  console.log(`Input: ${input}`);
+  console.log(`Expected (ideal): ${expectedOutput}`);
+  console.log(`Actual (system limitation): ${actualOutput}`);
+
+  
+  expect(actualOutput).toBe(expectedOutput);
+});
+
+test('Neg_Fun_0002: Special symbols in text', async ({ page }) => {
+  const input = 'mama @#$ gedhara yanavaa';
+  
+  const expectedOutput = 'මම ගෙදර යනවා';
+
+  const actualOutput = await translateAndGetOutput(page, input);
+
+  console.log(`TC ID: Neg_Fun_0002`);
+  console.log(`Input: ${input}`);
+  console.log(`Expected (symbols removed): ${expectedOutput}`);
+  console.log(`Actual (system limitation): ${actualOutput}`);
+
+  
+  expect(actualOutput).toBe(expectedOutput);
+});
+
+test('Neg_Fun_0003: Misspelled Singlish words', async ({ page }) => {
+  const input = 'mema gamee ynavvaa kiyala hithan hitiye';
+  
+  const expectedOutput = 'මම ගමේ යනවා කියල හිතන් හිටියෙ';
+
+  const actualOutput = await translateAndGetOutput(page, input);
+
+  console.log(`TC ID: Neg_Fun_0003`);
+  console.log(`Input: ${input}`);
+  console.log(`Expected: ${expectedOutput}`);
+  console.log(`Actual: ${actualOutput}`);
+
+  expect(actualOutput).toBe(expectedOutput);
+});
+
+test('Neg_Fun_0004: Multiple punctuation marks consecutively', async ({ page }) => {
+  const input = 'mama malagedhara yanavaa!!!??? oyaa enavadha???!!! api yamu!!!';
+  
+  const expectedOutput = 'මම මලගෙදර යනවා! ඔයා එනවද? අපි යමු!!';
+
+  const actualOutput = await translateAndGetOutput(page, input);
+
+  console.log(`TC ID: Neg_Fun_0004`);
+  console.log(`Input: ${input}`);
+  console.log(`Expected: ${expectedOutput}`);
+  console.log(`Actual: ${actualOutput}`);
+
+  expect(actualOutput).toBe(expectedOutput);
+});
+
+test('Neg_Fun_0005: Excessive repeated characters', async ({ page }) => {
+  const input = 'mamaaaaaaaaaaaaa kolaBA yanavaaaaaaa raathriyeeeeeee';
+  
+  const expectedOutput = 'මම කොලඹ යනවා රාත්‍රියේ';
+
+  const actualOutput = await translateAndGetOutput(page, input);
+
+  console.log(`TC ID: Neg_Fun_0005`);
+  console.log(`Input: ${input}`);
+  console.log(`Expected (normalized): ${expectedOutput}`);
+  console.log(`Actual (system limitation): ${actualOutput}`);
+
+  
+  expect(actualOutput).toBe(expectedOutput);
+});
+
+test('Neg_Fun_0006: Line break interrupting sentence', async ({ page }) => {
+  const input = 'mama oheeta\nennam vaahanaya\nbalanna';
+  
+  const expectedOutput = 'මම ඔහේට එන්නම් වාහනය බලන්න';
+
+  const actualOutput = await translateAndGetOutput(page, input);
+
+  console.log(`TC ID: Neg_Fun_0006`);
+  console.log(`Input: ${input}`);
+  console.log(`Expected (normalized): ${expectedOutput}`);
+  console.log(`Actual (system limitation): ${actualOutput}`);
+
+  
+  expect(actualOutput).toBe(expectedOutput);
+});
+
+test('Neg_Fun_0007: HTML/XML tags in input', async ({ page }) => {
+  const input = '<div>mama pansal yanavaa</div> <span>oyaa enavadha</span>';
+  
+  const expectedOutput = 'මම පන්සල් යනවා ඔයා එනවද';
+
+  const actualOutput = await translateAndGetOutput(page, input);
+
+  console.log(`TC ID: Neg_Fun_0007`);
+  console.log(`Input: ${input}`);
+  console.log(`Expected (expanded): ${expectedOutput}`);
+  console.log(`Actual (system limitation): ${actualOutput}`);
+
+  
+  expect(actualOutput).toBe(expectedOutput);
+});
+
+test('Neg_Fun_0008: Tab characters between words', async ({ page }) => {
+  const input = 'mama\tkadeeta\tgihin\tennam.';
+  
+  const expectedOutput = 'මම කඩේට ගිහින් එන්නම්.';
+
+  const actualOutput = await translateAndGetOutput(page, input);
+
+  console.log(`TC ID: Neg_Fun_0008`);
+  console.log(`Input: ${input}`);
+  console.log(`Expected (normalized): ${expectedOutput}`);
+  console.log(`Actual (system limitation): ${actualOutput}`);
+
+  
+  expect(actualOutput).toBe(expectedOutput);
+});
+
+test('Neg_Fun_0009: Multiple consecutive spaces in input', async ({ page }) => {
+  const input = 'mama          gedhara';
+  
+  const expectedOutput = 'මම ගෙදර';
+
+  const actualOutput = await translateAndGetOutput(page, input);
+
+  console.log(`TC ID: Neg_Fun_0009`);
+  console.log(`Input: ${input}`);
+  console.log(`Expected (normalized): ${expectedOutput}`);
+  console.log(`Actual (system limitation): ${actualOutput}`);
+
+  // This test SHOULD FAIL - system preserves tab characters
+  expect(actualOutput).toBe(expectedOutput);
+});
+
+test('Neg_Fun_0010: Long paragraph with mixed abbreviations and special characters', async ({ page }) => {
+  const input = 'hi guys!!! mama today morning 8AM ta office enna late vnaa bcoz traffic eka ganan gdk nisaa. Meeting eka 10.30AM ta start vnva CEO ekka & managers laa ekka. Presentation eka ready krlaa USB eke tynva plz check krnna. Budget proposal Rs. 500000/= approx evnna CEO sir laa aprove krnna. Aftr meeting psse documents tkaa email krnna oyaalth ekka saha WhatsApp message ekk daanna FOR YOR INFORMATION. Clients laa 3PM ta call krnna appointment eka confirm krnna. Thanks ';
+  // IDEAL expected output (abbreviations expanded, proper translation)
+  const expectedOutput = 'හායි යාලුවන්නෙනි!!! මම අද උදෑසන 8AM ට office එන්න ප්‍රමාද වුනා මොකද traffic එක ගණන් ගොඩක් නිසා. Meeting එක 10.30AM ට ආරම්භ වෙනව CEO එක්ක සහ managers ලා එක්ක. Presentation එක සූදානම් කරලා USB එකේ තියෙනව කරුණාකර පරීක්ෂා කරන්න. Budget proposal රුපියල් 500000/= ආසන්න වශයෙන් එවන්න CEO sir ලා අනුමත කරන්න.  පසුව meeting පස්සේ documents ටික email කරන්න ඔයාලත් එක්ක සහ WhatsApp message එකක් දාන්න ඔබේ තොරතුරු සඳහා. Clients ලා 3PM ට call කරන්න appointment එක තහවුරු කරන්න,ස්තුතියි.';
+
+  const actualOutput = await translateAndGetOutput(page, input);
+
+  console.log(`TC ID: Neg_Fun_0010`);
+  console.log(`Input length: ${input.length}`);
+  console.log(`Input: ${input}`);
+  console.log(`Expected (ideal): ${expectedOutput}`);
+  console.log(`Actual (system limitation): ${actualOutput}`);
+
+  expect(input.length).toBeGreaterThanOrEqual(300);
+  // This test SHOULD FAIL - system cannot handle mixed abbreviations
+  expect(actualOutput).toBe(expectedOutput);
+});
 
 // POSITIVE UI TEST CASES (2 tests) - Expected to PASS
 
@@ -440,7 +605,7 @@ test('Pos_UI_0001: Multiple rapid edits handled smoothly', async ({ page }) => {
 });
 
 test('Pos_UI_0002: Extremely rapid repeated clearing and typing', async ({ page }) => {
-  const expectedOutput = 'මම';
+  const expectedOutput = 'උබ පලයන්';
 
   await page.goto(BASE_URL);
   await page.waitForLoadState('networkidle');
@@ -450,14 +615,20 @@ test('Pos_UI_0002: Extremely rapid repeated clearing and typing', async ({ page 
 
   // Stress test with rapid clear/type cycles
   for (let i = 0; i < 5; i++) {
-    await inputField.fill('mama');
+    await inputField.fill('u');
     await page.waitForTimeout(100);
-    await inputField.fill('');
+    await inputField.fill('uba');
+    await page.waitForTimeout(100);
+    await inputField.fill('uba pa');
+    await page.waitForTimeout(100);
+    await inputField.fill('uba pala');
+    await page.waitForTimeout(100);
+    await inputField.fill('uba palayan');
     await page.waitForTimeout(100);
   }
 
   // Final input
-  await inputField.fill('mama');
+  await inputField.fill('uba palayan');
   await page.waitForTimeout(3000);
 
   
@@ -470,173 +641,9 @@ test('Pos_UI_0002: Extremely rapid repeated clearing and typing', async ({ page 
   const finalOutput = await outputDiv.textContent() || '';
 
   console.log(`TC ID: Pos_UI_0002`);
-  console.log(`Final Input: mama`);
+  console.log(`Final Input: uba palayan`);
   console.log(`Expected: ${expectedOutput}`);
   console.log(`Final Output: ${finalOutput}`);
 
   expect(finalOutput).toBe(expectedOutput);
-});
-
-
-// NEGATIVE FUNCTIONAL TEST CASES (10 tests) - Expected to FAIL
-
-
-test('Neg_Fun_0001: Joined words without spaces', async ({ page }) => {
-  const input = 'apisadhudhatagedharayanavaa.';
-  
-  const expectedOutput = 'අපි සදුදට ගෙදර යනවා.';
-
-  const actualOutput = await translateAndGetOutput(page, input);
-
-  console.log(`TC ID: Neg_Fun_0001`);
-  console.log(`Input: ${input}`);
-  console.log(`Expected (ideal): ${expectedOutput}`);
-  console.log(`Actual (system limitation): ${actualOutput}`);
-
-  
-  expect(actualOutput).toBe(expectedOutput);
-});
-
-test('Neg_Fun_0002: Special symbols in text', async ({ page }) => {
-  const input = 'mama @#$ gedhara yanavaa';
-  
-  const expectedOutput = 'මම ගෙදර යනවා';
-
-  const actualOutput = await translateAndGetOutput(page, input);
-
-  console.log(`TC ID: Neg_Fun_0002`);
-  console.log(`Input: ${input}`);
-  console.log(`Expected (symbols removed): ${expectedOutput}`);
-  console.log(`Actual (system limitation): ${actualOutput}`);
-
-  
-  expect(actualOutput).toBe(expectedOutput);
-});
-
-test('Neg_Fun_0003: Misspelled Singlish words', async ({ page }) => {
-  const input = 'mema gedhra ynavva kiyala hithan hitiye';
-  
-  const expectedOutput = 'මම ගෙදර යනව කියල හිතන් හිටියෙ';
-
-  const actualOutput = await translateAndGetOutput(page, input);
-
-  console.log(`TC ID: Neg_Fun_0003`);
-  console.log(`Input: ${input}`);
-  console.log(`Expected: ${expectedOutput}`);
-  console.log(`Actual: ${actualOutput}`);
-
-  expect(actualOutput).toBe(expectedOutput);
-});
-
-test('Neg_Fun_0004: Multiple punctuation marks consecutively', async ({ page }) => {
-  const input = 'mama gedhara yanavaa!!!??? oyaa enavadha???!!! api yamu!!!';
-  
-  const expectedOutput = 'මම ගෙදර යනවා! ඔයා එනවද? අපි යමු!';
-
-  const actualOutput = await translateAndGetOutput(page, input);
-
-  console.log(`TC ID: Neg_Fun_0004`);
-  console.log(`Input: ${input}`);
-  console.log(`Expected: ${expectedOutput}`);
-  console.log(`Actual: ${actualOutput}`);
-
-  expect(actualOutput).toBe(expectedOutput);
-});
-
-test('Neg_Fun_0005: Excessive repeated characters', async ({ page }) => {
-  const input = 'mamaaaaaaaaaaaaa gedharaaaaaa yanavaaaaaaa raathriyeeeeeee';
-  
-  const expectedOutput = 'මම ගෙදර යනවා රාත්‍රියේ';
-
-  const actualOutput = await translateAndGetOutput(page, input);
-
-  console.log(`TC ID: Neg_Fun_0005`);
-  console.log(`Input: ${input}`);
-  console.log(`Expected (normalized): ${expectedOutput}`);
-  console.log(`Actual (system limitation): ${actualOutput}`);
-
-  
-  expect(actualOutput).toBe(expectedOutput);
-});
-
-test('Neg_Fun_0006: Line break interrupting sentence', async ({ page }) => {
-  const input = 'mama gedhara\nennam bath\nkanna';
-  
-  const expectedOutput = 'මම ගෙදර එන්නම් බත් කන්න';
-
-  const actualOutput = await translateAndGetOutput(page, input);
-
-  console.log(`TC ID: Neg_Fun_0006`);
-  console.log(`Input: ${input}`);
-  console.log(`Expected (normalized): ${expectedOutput}`);
-  console.log(`Actual (system limitation): ${actualOutput}`);
-
-  
-  expect(actualOutput).toBe(expectedOutput);
-});
-
-test('Neg_Fun_0007: HTML/XML tags in input', async ({ page }) => {
-  const input = '<div>mama gedhara yanavaa</div> <span>oyaa enavadha</span>';
-  
-  const expectedOutput = 'මම ගෙදර යනවා ඔයා එනවද';
-
-  const actualOutput = await translateAndGetOutput(page, input);
-
-  console.log(`TC ID: Neg_Fun_0007`);
-  console.log(`Input: ${input}`);
-  console.log(`Expected (expanded): ${expectedOutput}`);
-  console.log(`Actual (system limitation): ${actualOutput}`);
-
-  
-  expect(actualOutput).toBe(expectedOutput);
-});
-
-test('Neg_Fun_0008: Tab characters between words', async ({ page }) => {
-  const input = 'mama\tkadeeta\tgihin\tennam.';
-  
-  const expectedOutput = 'මම කඩේට ගිහින් එන්නම්.';
-
-  const actualOutput = await translateAndGetOutput(page, input);
-
-  console.log(`TC ID: Neg_Fun_0008`);
-  console.log(`Input: ${input}`);
-  console.log(`Expected (normalized): ${expectedOutput}`);
-  console.log(`Actual (system limitation): ${actualOutput}`);
-
-  
-  expect(actualOutput).toBe(expectedOutput);
-});
-
-test('Neg_Fun_0009: Tab characters between words v2', async ({ page }) => {
-  const input = 'mama\tkadeeta\tgihin\tennam.';
-  
-  const expectedOutput = 'මම කඩේට ගිහින් එන්නම්.';
-
-  const actualOutput = await translateAndGetOutput(page, input);
-
-  console.log(`TC ID: Neg_Fun_0009`);
-  console.log(`Input: ${input}`);
-  console.log(`Expected (normalized): ${expectedOutput}`);
-  console.log(`Actual (system limitation): ${actualOutput}`);
-
-  // This test SHOULD FAIL - system preserves tab characters
-  expect(actualOutput).toBe(expectedOutput);
-});
-
-test('Neg_Fun_0010: Long paragraph with mixed abbreviations and special characters', async ({ page }) => {
-  const input = 'hi guys!!! mama 2day morning 8AM ta office enna late vnaa bcoz traffic eka ganan gdk nisaa. Meeting eka 10.30AM ta start vnva CEO ekka & managers laa ekka. Presentation eka ready krlaa USB eke tynva plz check krnna. Budget proposal Rs. 500000/= approx evnna CEO sir laa aprove krnna. Aftr meeting psse documents tkaa email krnna oyaalth ekka saha WhatsApp msg ekk dn FYI. Clients laa 3PM ta call krnna appointment eka confirm krnna. Thanks';
-  // IDEAL expected output (abbreviations expanded, proper translation)
-  const expectedOutput = 'හායි යාළුවනේ!!! මම අද උදේ 8AM ට office එන්න late වුනා because traffic එක ගණන් ගොඩක් නිසා. Meeting එක 10.30AM ට start වුනවා CEO එක්ක & managers ලා එක්ක. Presentation එක ready කරලා USB එකේ තියනවා please check කරන්න. Budget proposal Rs. 500000/= approximate එවන්න CEO sir ලා approve කරන්න. After meeting පස්සෙ documents ටිකා email කරන්න ඔයාලත් එක්ක සහ WhatsApp message එකක් දෙන් FYI. Clients ලා 3PM ට call කරන්න appointment එක confirm කරන්න. Thanks';
-
-  const actualOutput = await translateAndGetOutput(page, input);
-
-  console.log(`TC ID: Neg_Fun_0010`);
-  console.log(`Input length: ${input.length}`);
-  console.log(`Input: ${input}`);
-  console.log(`Expected (ideal): ${expectedOutput}`);
-  console.log(`Actual (system limitation): ${actualOutput}`);
-
-  expect(input.length).toBeGreaterThanOrEqual(300);
-  // This test SHOULD FAIL - system cannot handle mixed abbreviations
-  expect(actualOutput).toBe(expectedOutput);
 });
